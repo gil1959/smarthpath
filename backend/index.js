@@ -32,6 +32,11 @@ app.post('/api/cari-rute', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend server berjalan di http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Backend server berjalan di http://localhost:${PORT}`);
+    });
+}
+
+// Ekspor untuk Vercel Serverless
+module.exports = app;

@@ -37,7 +37,11 @@ function App() {
     setRouteData(null);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/cari-rute', {
+      const apiUrl = import.meta.env.PROD 
+        ? '/_/backend/api/cari-rute' 
+        : 'http://localhost:3000/api/cari-rute';
+        
+      const response = await axios.post(apiUrl, {
         start: { lat: startPoint.lat, lng: startPoint.lng },
         end: { lat: endPoint.lat, lng: endPoint.lng }
       });
